@@ -2,12 +2,12 @@ const std = @import("std");
 
 pub fn squareOfSum(number: usize) usize {
     const calc_num: usize = @divTrunc(number * (number + 1), 2);
-    return std.math.powi(usize, calc_num, 2);
+    return calc_num * calc_num;
 }
 
 pub fn sumOfSquares(number: usize) usize {
-    const calc_num: usize = std.math.powi(usize, number, 2);
-    return std.math.gamma(usize, calc_num + 1);
+    const calc_num: usize = number * (number + 1) * (2 * number + 1);
+    return @divTrunc(calc_num, 6);
 }
 
 pub fn differenceOfSquares(number: usize) usize {
