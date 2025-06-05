@@ -1,19 +1,19 @@
 pub fn isIsogram(str: []const u8) bool {
-    var bucket: [str.len]u8 = .{0} ** str.len;
-    for (str, 0..) |character, i| {
-        if (character >= 97) {
-            bucket[i] = character - 32;
-        } else {
-            bucket[i] = character;
+    var seen: [26]bool = undefined;
+
+    for (str) |character| {
+        if (character >= 'a' and character <= 'z') {
+            if (seen[character - 'a']) {
+                return false;
+            }
+            seen[character - 'a'] = true;
+        } else if (character >= 'A' and character <= 'Z') {
+            if (seen[character - 'A']) {
+                return false;
+            }
+            seen[character - 'A'] = true;
         }
     }
 
-    for (bucket, 0..) |_, index| {
-        for (bucket, index+1..) |_, ind| {
-            if (bucket[index] == bucket[ind]) {
-                return false;
-            }   
-        }
-    }
     return true;
 }
